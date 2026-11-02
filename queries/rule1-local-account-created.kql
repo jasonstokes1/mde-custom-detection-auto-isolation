@@ -1,0 +1,7 @@
+// Rule 1: JPS - Local Account Created - jps-win11-vm01
+// Defender custom detection | Continuous (NRT) | Medium | T1136.001
+// Automated action: Collect investigation package
+DeviceEvents
+| where DeviceId == "2427dae6ebfd729ae702071b2e679c7ff003f07d"
+| where ActionType == "UserAccountCreated"
+| project Timestamp, DeviceId, DeviceName, ActionType, AccountName, AccountSid, InitiatingProcessAccountName, ReportId

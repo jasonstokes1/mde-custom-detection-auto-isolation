@@ -1,0 +1,7 @@
+// Step 1: find the account changes Defender recorded on my VM (Advanced Hunting)
+DeviceEvents
+| where Timestamp > ago(1h)
+| where DeviceId == "2427dae6ebfd729ae702071b2e679c7ff003f07d"
+| where ActionType contains "UserAccount"
+| project Timestamp, ActionType, AccountName, AccountSid, AdditionalFields, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName, ReportId
+| sort by Timestamp asc

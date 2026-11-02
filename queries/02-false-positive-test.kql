@@ -1,0 +1,5 @@
+// Step 2: how noisy would the logic be across every device in the range? (read-only, counts only)
+DeviceEvents
+| where Timestamp > ago(30d)
+| where ActionType == "UserAccountAddedToLocalGroup"
+| summarize count(), countif(tostring(parse_json(AdditionalFields).GroupSid) == "S-1-5-32-544"), dcount(DeviceId)
